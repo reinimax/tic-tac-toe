@@ -24,16 +24,29 @@ const gameBoard = ( () => {
 })();
 
 //player
-const Player = (name) => {
-    return {name};
+const Player = (name, sign) => {
+    return {name, sign};
 }
 
 //game
 const game = ( () => {
-    //controls the game-flow
+    //start game
+    function startGame() {
+        //create players
+        const player1 = Player("player1", "X");
+        const player2 = Player("player2", "O");
 
-    return {};
+        //render game board
+        gameBoard.render();
+
+        //change player to player1 (player one starts)
+    }
+    //change player
+
+    //end game
+
+    return {startGame};
 })();
 
 //////////////
-gameBoard.render();
+game.startGame();
