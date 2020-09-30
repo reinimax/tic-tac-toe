@@ -2,15 +2,18 @@
 const gameBoard = ( () => {
     let board = ["","","","","","","","",""];
     const displayElements = document.querySelectorAll(".gb-field");
-    displayElements.forEach(function(element) {
-        element.addEventListener("click", function(event) {
-            update(event);
+    
+    function addListeners() {
+        displayElements.forEach(function(element) {
+            element.addEventListener("click", update);
         });
-    });
-
+    }
+    
     function update(event) {
         console.log(event.target.id);
         board[event.target.id] = "X";
+        //remove eventlistener
+        displayElements[event.target.id].removeEventListener("click", update);
         render();
     }
 
@@ -20,7 +23,7 @@ const gameBoard = ( () => {
         }  
     }
 
-    return {render};
+    return {render, addListeners};
 })();
 
 //player
@@ -36,7 +39,8 @@ const game = ( () => {
         const player1 = Player("player1", "X");
         const player2 = Player("player2", "O");
 
-        //render game board
+        //add listeners and render game board
+        gameBoard.addListeners();
         gameBoard.render();
 
         //change player to player1 (player one starts)
