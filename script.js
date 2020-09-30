@@ -3,10 +3,12 @@ const gameBoard = ( () => {
     let board = ["X","O","X","O","X","O","X","O","X"];
 
     function render() {
-        const display = document.querySelector("#gameboard");
+        const displayElements = document.querySelectorAll(".gb-field");
+        
         for (let i = 0; i < board.length; i++) {
-            display.childNodes[i].textContent = board[i];
+            displayElements[i].textContent = board[i];
         }
+        
     }
 
     return {render};
