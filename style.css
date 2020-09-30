@@ -1,0 +1,12 @@
+#gameboard {
+    width: 300px;
+    height: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.gb-field {
+    border: 1px solid black;
+    text-align: center;
+    line-height: 98px;
+}
