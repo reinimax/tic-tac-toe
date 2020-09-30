@@ -1,7 +1,15 @@
 //gameboard
 const gameBoard = ( () => {
-    let board = [];
-    return {board};
+    let board = ["X","O","X","O","X","O","X","O","X"];
+
+    function render() {
+        const display = document.querySelector("#gameboard");
+        for (let i = 0; i < board.length; i++) {
+            display.childNodes[i].textContent = board[i];
+        }
+    }
+
+    return {render};
 })();
 
 //player
@@ -11,6 +19,10 @@ const Player = (name) => {
 
 //game
 const game = ( () => {
-    //tracks game status
+    //controls the game-flow
+
     return {};
 })();
+
+//////////////
+gameBoard.render();
