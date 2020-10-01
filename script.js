@@ -15,14 +15,28 @@ const gameBoard = ( () => {
         //remove eventlistener
         displayElements[event.target.id].removeEventListener("click", update);
         render();
-        //tell the game to change active player
-        game.changePlayer();
+        //check if game is over (THIS DESERVES ITS OWN FUNCTION)
+        if (board.every(hasValue)) {
+            game.endGame();
+        } else 
+        //if one player got 3 in a row -> endgame with announcing winner
+        //else ...
+        {
+            //tell the game to change active player
+            game.changePlayer();
+        }
+        
     }
 
     function render() {
         for (let i = 0; i < board.length; i++) {
             displayElements[i].textContent = board[i];
         }  
+    }
+
+    function hasValue(boardElement) {
+        //check if an element in the board-array is empty
+        return boardElement !== "";
     }
 
     return {render, addListeners};
@@ -60,8 +74,11 @@ const game = ( () => {
     }
 
     //end game
+    function endGame() {
+        console.log("Game ended (board full)");
+    }
 
-    return {startGame, changePlayer, getActivePlayerSign};
+    return {startGame, changePlayer, getActivePlayerSign, endGame};
 })();
 
 //////////////
