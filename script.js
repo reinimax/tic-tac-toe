@@ -41,7 +41,7 @@ const gameBoard = ( () => {
         //check if an element in the board-array is empty
         return boardElement !== "";
     }
-
+    
     function testCombos(subArray) {
         //test if the corresponding indices of board all contain the same sign
         /*console.log(subArray.some(test));
@@ -58,7 +58,6 @@ const gameBoard = ( () => {
             if(winningCombos[i].every(testCombos) === true) return true;
         }
     }
-    
 
     return {render, addListeners};
 })();
