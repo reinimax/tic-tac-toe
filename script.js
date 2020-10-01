@@ -44,16 +44,19 @@ const gameBoard = ( () => {
 
     function testCombos(subArray) {
         //test if the corresponding indices of board all contain the same sign
-        console.log(subArray.some(test));
-        
+        /*console.log(subArray.some(test));
         function test(index) {
             return board[index] === game.getActivePlayerSign();
-        }
+        }*/
+        return board[subArray] === game.getActivePlayerSign();
     }
 
-
     function checkGameState() {
-        return winningCombos.some(testCombos); //should return true or false
+        //return winningCombos.some(testCombos); //should return true or false
+        for (let i = 0; i < winningCombos.length; i++) {
+            console.log(winningCombos[i].every(testCombos));
+            if(winningCombos[i].every(testCombos) === true) return true;
+        }
     }
     
 
