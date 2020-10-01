@@ -3,6 +3,10 @@ const gameBoard = ( () => {
     let board = ["","","","","","","","",""];
     const displayElements = document.querySelectorAll(".gb-field");
     
+    const winningCombos = [
+        [0,1,2],[3,4,5],[6,7,8]
+    ];
+
     function addListeners() {
         displayElements.forEach(function(element) {
             element.addEventListener("click", update);
@@ -17,11 +21,10 @@ const gameBoard = ( () => {
         render();
         //check if game is over (THIS DESERVES ITS OWN FUNCTION)
         if (board.every(hasValue)) {
-            game.endGame();
-        } else 
-        //if one player got 3 in a row -> endgame with announcing winner
-        //else ...
-        {
+            game.endGame("Tie");
+        } else if (checkGameState()) {
+            game.endGame(`${game.getActivePlayerSign()} won`);
+        } else {
             //tell the game to change active player
             game.changePlayer();
         }
@@ -38,6 +41,21 @@ const gameBoard = ( () => {
         //check if an element in the board-array is empty
         return boardElement !== "";
     }
+
+    function testCombos(subArray) {
+        //test if the corresponding indices of board all contain the same sign
+        console.log(subArray.some(test));
+        
+        function test(index) {
+            return board[index] === game.getActivePlayerSign();
+        }
+    }
+
+
+    function checkGameState() {
+        return winningCombos.some(testCombos); //should return true or false
+    }
+    
 
     return {render, addListeners};
 })();
@@ -63,6 +81,7 @@ const game = ( () => {
         //change player to player1 (player one starts)
         player1.active = true;
     }
+    
     //change player
     function changePlayer() {
         player1.active = (player1.active) ? false : true;
@@ -74,8 +93,8 @@ const game = ( () => {
     }
 
     //end game
-    function endGame() {
-        console.log("Game ended (board full)");
+    function endGame(message) {
+        console.log(`Game ended. ${message}`);
     }
 
     return {startGame, changePlayer, getActivePlayerSign, endGame};
