@@ -137,3 +137,21 @@ const game = ( () => {
 
 //////////////
 game.init();
+
+/* Like this the nesting of some() and every() works...
+const twoDimArray = [
+    ["1","2"],["3","4"],["5","6"]
+]
+
+function test(sub) {
+    console.log("Sub: " + sub);
+    return (sub > 3);
+}
+
+function handSubArray(subArray) {
+    console.log("SubArray: " + subArray);
+    return (subArray.every(test));
+}
+
+console.log(twoDimArray.some(handSubArray));
+*/
