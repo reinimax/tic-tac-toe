@@ -23,9 +23,9 @@ const gameBoard = ( () => {
         render();
         //check if game is over (THIS DESERVES ITS OWN FUNCTION)
         if (board.every(hasValue)) {
-            game.endGame("Tie");
+            game.endGame("T");
         } else if (checkGameState()) {
-            game.endGame(`${game.getActivePlayerSign()} won`);
+            game.endGame(game.getActivePlayerSign());
         } else {
             //tell the game to change active player
             game.changePlayer();
@@ -76,8 +76,8 @@ const Player = (name, sign) => {
 //game
 const game = ( () => {
     //create players
-    const player1 = Player("player1", "X");
-    const player2 = Player("player2", "O");
+    const player1 = Player("Player 1", "X");
+    const player2 = Player("Player 2", "O");
     
     function init() {
         chacheDom();
@@ -88,6 +88,7 @@ const game = ( () => {
         this.newGameBtn = document.querySelector("#newgame");
         this.startBtn = document.querySelector("#startgame");
         this.playerPanel = document.querySelector(".chooseplayers");
+        this.announceWinner = document.querySelector("#announce-winner");
     }
 
     function addListeners() {
@@ -99,6 +100,7 @@ const game = ( () => {
 
     //start game
     function startGame() {   
+        announceWinner.textContent = "";
         //collapse form for entering players
         playerPanel.classList.remove("visible");
         //add listeners and render game board
@@ -120,8 +122,10 @@ const game = ( () => {
     }
 
     //end game
-    function endGame(message) {
-        console.log(`Game ended. ${message}`);
+    function endGame(winCode) {
+        announceWinner.textContent = (winCode === "T") ? `It's a tie!` : 
+                (winCode === "X") ? `${player1.name} won.` : 
+                (winCode === "O") ? `${player2.name} won.` : "Something terrible happened ...";
         //reset board
         gameBoard.resetBoard();
         //remove listeners
