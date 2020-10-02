@@ -4,7 +4,9 @@ const gameBoard = ( () => {
     const displayElements = document.querySelectorAll(".gb-field");
     
     const winningCombos = [
-        [0,1,2],[3,4,5],[6,7,8]
+        [0,1,2],[3,4,5],[6,7,8], //horizontal
+        [0,3,6],[1,4,7],[2,5,8], //veritcal
+        [0,4,8],[2,4,6]          //diagonal
     ];
 
     function addListeners() {
@@ -43,18 +45,11 @@ const gameBoard = ( () => {
     }
     
     function testCombos(subArray) {
-        //test if the corresponding indices of board all contain the same sign
-        /*console.log(subArray.some(test));
-        function test(index) {
-            return board[index] === game.getActivePlayerSign();
-        }*/
         return board[subArray] === game.getActivePlayerSign();
     }
 
     function checkGameState() {
-        //return winningCombos.some(testCombos); //should return true or false
         for (let i = 0; i < winningCombos.length; i++) {
-            console.log(winningCombos[i].every(testCombos));
             if(winningCombos[i].every(testCombos) === true) return true;
         }
     }
