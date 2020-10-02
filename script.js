@@ -54,7 +54,17 @@ const gameBoard = ( () => {
         }
     }
 
-    return {render, addListeners};
+    function removeListeners() {
+        displayElements.forEach(function(element) {
+            element.removeEventListener("click", update);
+        });
+    }
+
+    function resetBoard() {
+        board.fill("");
+    }
+
+    return {render, addListeners, removeListeners, resetBoard};
 })();
 
 //player
@@ -112,6 +122,10 @@ const game = ( () => {
     //end game
     function endGame(message) {
         console.log(`Game ended. ${message}`);
+        //reset board
+        gameBoard.resetBoard();
+        //remove listeners
+        gameBoard.removeListeners();
     }
 
     return {init, startGame, changePlayer, getActivePlayerSign, endGame};
