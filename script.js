@@ -69,8 +69,28 @@ const game = ( () => {
     const player1 = Player("player1", "X");
     const player2 = Player("player2", "O");
     
+    function init() {
+        chacheDom();
+        addListeners();
+    }
+
+    function chacheDom() {
+        this.newGameBtn = document.querySelector("#newgame");
+        this.startBtn = document.querySelector("#startgame");
+        this.playerPanel = document.querySelector(".chooseplayers");
+    }
+
+    function addListeners() {
+        newGameBtn.addEventListener("click", function() {
+            playerPanel.classList.add("visible");
+        });
+        startBtn.addEventListener("click", startGame);
+    }
+
     //start game
     function startGame() {   
+        //collapse form for entering players
+        playerPanel.classList.remove("visible");
         //add listeners and render game board
         gameBoard.addListeners();
         gameBoard.render();
@@ -94,8 +114,8 @@ const game = ( () => {
         console.log(`Game ended. ${message}`);
     }
 
-    return {startGame, changePlayer, getActivePlayerSign, endGame};
+    return {init, startGame, changePlayer, getActivePlayerSign, endGame};
 })();
 
 //////////////
-game.startGame();
+game.init();

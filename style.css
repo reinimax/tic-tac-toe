@@ -12,8 +12,12 @@
     line-height: 98px;
 }
 
-#chooseplayers {
+.chooseplayers {
     position: absolute;
-    display: auto;
+    display: none;
     background-color: yellow;
+}
+
+.visible {
+    display: block;
 }
