@@ -11,3 +11,9 @@
     height: 100px;
     line-height: 98px;
 }
+
+#chooseplayers {
+    position: absolute;
+    display: auto;
+    background-color: yellow;
+}
