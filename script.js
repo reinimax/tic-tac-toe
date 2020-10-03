@@ -22,10 +22,10 @@ const gameBoard = ( () => {
         displayElements[event.target.id].removeEventListener("click", update);
         render();
         //check if game is over (THIS DESERVES ITS OWN FUNCTION)
-        if (board.every(hasValue)) {
-            game.endGame("T");
-        } else if (checkGameState()) {
+        if (checkGameState()) {
             game.endGame(game.getActivePlayerSign());
+        } else if (board.every(hasValue)) {
+            game.endGame("T");
         } else {
             //tell the game to change active player
             game.changePlayer();
