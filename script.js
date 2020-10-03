@@ -44,14 +44,38 @@ const gameBoard = ( () => {
         return boardElement !== "";
     }
     
-    function testCombos(subArray) {
-        return board[subArray] === game.getActivePlayerSign();
+/* Like this the nesting of some() and every() works...
+const twoDimArray = [
+    ["1","2"],["3","4"],["5","6"]
+]
+
+function test(sub) {
+    console.log("Sub: " + sub);
+    return (sub > 3);
+}
+
+function handSubArray(subArray) {
+    console.log("SubArray: " + subArray);
+    return (subArray.every(test));
+}
+
+console.log(twoDimArray.some(handSubArray));
+*/
+
+
+    function testCombos(sub) {
+        return board[sub] === game.getActivePlayerSign();
+    }
+
+    function handSubArray(subArray) {
+        return (subArray.every(testCombos));
     }
 
     function checkGameState() {
-        for (let i = 0; i < winningCombos.length; i++) {
+        return (winningCombos.some(handSubArray));
+        /*for (let i = 0; i < winningCombos.length; i++) {
             if(winningCombos[i].every(testCombos) === true) return true;
-        }
+        }*/
     }
 
     function removeListeners() {
@@ -137,21 +161,3 @@ const game = ( () => {
 
 //////////////
 game.init();
-
-/* Like this the nesting of some() and every() works...
-const twoDimArray = [
-    ["1","2"],["3","4"],["5","6"]
-]
-
-function test(sub) {
-    console.log("Sub: " + sub);
-    return (sub > 3);
-}
-
-function handSubArray(subArray) {
-    console.log("SubArray: " + subArray);
-    return (subArray.every(test));
-}
-
-console.log(twoDimArray.some(handSubArray));
-*/
