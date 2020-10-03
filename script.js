@@ -97,13 +97,16 @@ const game = ( () => {
 
     function addListeners() {
         newGameBtn.addEventListener("click", function() {
+            checkforAI(); //this ensures that player 2 field stays disabled when AI is checked even when page is reloaded
             playerPanel.classList.add("visible");
             if (announceWinner.textContent === "") endGame("C");
         });
         startBtn.addEventListener("click", startGame);
-        aiCheckBox.addEventListener("click", function() {
-            player2NameField.disabled = (aiCheckBox.checked) ? true : false;
-        });
+        aiCheckBox.addEventListener("click", checkforAI);
+    }
+
+    function checkforAI() {
+        player2NameField.disabled = (aiCheckBox.checked) ? true : false;
     }
 
     //start game
