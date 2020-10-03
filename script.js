@@ -98,7 +98,7 @@ const game = ( () => {
     function addListeners() {
         newGameBtn.addEventListener("click", function() {
             playerPanel.classList.add("visible");
-            endGame("C");
+            if (announceWinner.textContent === "") endGame("C");
         });
         startBtn.addEventListener("click", startGame);
         aiCheckBox.addEventListener("click", function() {
