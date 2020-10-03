@@ -33,6 +33,8 @@ const gameBoard = ( () => {
             game.endGame(game.getActivePlayerSign());
         } else if (board.every(hasValue)) {
             game.endGame("T");
+        } else if (game.isAIActive()){
+            //make AI move
         } else {
             game.changePlayer();
         }
@@ -109,6 +111,10 @@ const game = ( () => {
         player2NameField.disabled = (aiCheckBox.checked) ? true : false;
     }
 
+    function isAIActive() {
+        return aiCheckBox.checked;
+    }
+
     //start game
     function startGame() {   
         setPlayerNames()
@@ -152,7 +158,7 @@ const game = ( () => {
         gameBoard.removeListeners();
     }
 
-    return {init, startGame, changePlayer, getActivePlayerSign, endGame};
+    return {init, startGame, changePlayer, getActivePlayerSign, isAIActive, endGame};
 })();
 
 //////////////
