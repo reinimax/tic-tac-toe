@@ -90,6 +90,8 @@ const game = ( () => {
         this.startBtn = document.querySelector("#startgame");
         this.playerPanel = document.querySelector(".chooseplayers");
         this.announceWinner = document.querySelector("#announce-winner");
+        this.player1NameField = document.querySelector("#player1");
+        this.player2NameField = document.querySelector("#player2");
     }
 
     function addListeners() {
@@ -101,10 +103,14 @@ const game = ( () => {
 
     //start game
     function startGame() {   
+        //set playernames
+        player1.name = (player1NameField.value) ? player1NameField.value : "Player 1";
+        player2.name = (player2NameField.value) ? player2NameField.value : "Player 2";
+        //clear field that announces winner from previous game
         announceWinner.textContent = "";
         //collapse form for entering players
         playerPanel.classList.remove("visible");
-        //add listeners and render game board
+        //add listeners to gameboard and render gameboard
         gameBoard.addListeners();
         gameBoard.render();
 
