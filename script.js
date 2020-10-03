@@ -97,6 +97,7 @@ const game = ( () => {
     function addListeners() {
         newGameBtn.addEventListener("click", function() {
             playerPanel.classList.add("visible");
+            endGame("C");
         });
         startBtn.addEventListener("click", startGame);
     }
@@ -132,7 +133,8 @@ const game = ( () => {
     function endGame(winCode) {
         announceWinner.textContent = (winCode === "T") ? `It's a tie!` : 
                 (winCode === "X") ? `${player1.name} won.` : 
-                (winCode === "O") ? `${player2.name} won.` : "Something terrible happened ...";
+                (winCode === "O") ? `${player2.name} won.` :
+                (winCode === "C") ? `Game was cancelled!` : "Something terrible happened ...";
         //reset board
         gameBoard.resetBoard();
         //remove listeners
