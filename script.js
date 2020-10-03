@@ -16,21 +16,10 @@ const gameBoard = ( () => {
     }
     
     function update(event) {
-        console.log(event.target.id);
         board[event.target.id] = game.getActivePlayerSign();
-        //remove eventlistener
         displayElements[event.target.id].removeEventListener("click", update);
         render();
-        //check if game is over (THIS DESERVES ITS OWN FUNCTION)
-        if (checkGameState()) {
-            game.endGame(game.getActivePlayerSign());
-        } else if (board.every(hasValue)) {
-            game.endGame("T");
-        } else {
-            //tell the game to change active player
-            game.changePlayer();
-        }
-        
+        checkGameState();
     }
 
     function render() {
@@ -39,29 +28,20 @@ const gameBoard = ( () => {
         }  
     }
 
+    function checkGameState() {
+        if (checkForWin()) {
+            game.endGame(game.getActivePlayerSign());
+        } else if (board.every(hasValue)) {
+            game.endGame("T");
+        } else {
+            game.changePlayer();
+        }
+    }
+
     function hasValue(boardElement) {
         //check if an element in the board-array is empty
         return boardElement !== "";
     }
-    
-/* Like this the nesting of some() and every() works...
-const twoDimArray = [
-    ["1","2"],["3","4"],["5","6"]
-]
-
-function test(sub) {
-    console.log("Sub: " + sub);
-    return (sub > 3);
-}
-
-function handSubArray(subArray) {
-    console.log("SubArray: " + subArray);
-    return (subArray.every(test));
-}
-
-console.log(twoDimArray.some(handSubArray));
-*/
-
 
     function testCombos(sub) {
         return board[sub] === game.getActivePlayerSign();
@@ -71,11 +51,8 @@ console.log(twoDimArray.some(handSubArray));
         return (subArray.every(testCombos));
     }
 
-    function checkGameState() {
+    function checkForWin() {
         return (winningCombos.some(handSubArray));
-        /*for (let i = 0; i < winningCombos.length; i++) {
-            if(winningCombos[i].every(testCombos) === true) return true;
-        }*/
     }
 
     function removeListeners() {
