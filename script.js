@@ -16,8 +16,15 @@ const gameBoard = ( () => {
     }
     
     function update(event) {
-        board[event.target.id] = game.getActivePlayerSign();
-        displayElements[event.target.id].removeEventListener("click", update);
+        if (event.type === "click") {
+            //if the function is called via a click-event from the player
+            board[event.target.id] = game.getActivePlayerSign();
+            displayElements[event.target.id].removeEventListener("click", update);
+        } else {
+            //if the function is called via the AI. In this case, event = a randomly chosen display-element
+            board[event.id] = game.getActivePlayerSign();
+            displayElements[event.id].removeEventListener("click", update);
+        }
         render();
         checkGameState();
     }
@@ -33,11 +40,16 @@ const gameBoard = ( () => {
             game.endGame(game.getActivePlayerSign());
         } else if (board.every(hasValue)) {
             game.endGame("T");
-        } else if (game.isAIActive()){
-            //make AI move
         } else {
             game.changePlayer();
+            if (game.isAIActive() && game.getActivePlayerSign() === "O") weakAIMove();
         }
+    }
+
+    function weakAIMove() {
+        update(displayElements[8]);
+        console.log("AI move");
+        console.log(displayElements[8].id);
     }
 
     function hasValue(boardElement) {
