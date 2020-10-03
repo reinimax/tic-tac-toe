@@ -92,6 +92,7 @@ const game = ( () => {
         this.announceWinner = document.querySelector("#announce-winner");
         this.player1NameField = document.querySelector("#player1");
         this.player2NameField = document.querySelector("#player2");
+        this.aiCheckBox = document.querySelector("#ai");
     }
 
     function addListeners() {
@@ -100,13 +101,14 @@ const game = ( () => {
             endGame("C");
         });
         startBtn.addEventListener("click", startGame);
+        aiCheckBox.addEventListener("click", function() {
+            player2NameField.disabled = (aiCheckBox.checked) ? true : false;
+        });
     }
 
     //start game
     function startGame() {   
-        //set playernames
-        player1.name = (player1NameField.value) ? player1NameField.value : "Player 1";
-        player2.name = (player2NameField.value) ? player2NameField.value : "Player 2";
+        setPlayerNames()
         //clear field that announces winner from previous game
         announceWinner.textContent = "";
         //collapse form for entering players
@@ -119,6 +121,12 @@ const game = ( () => {
         player1.active = true;
     }
     
+    function setPlayerNames() {
+        player1.name = (player1NameField.value) ? player1NameField.value : "Player 1";
+        player2.name = (player2NameField.disabled) ? "The mighty AI" :
+                (player2NameField.value) ? player2NameField.value : "Player 2";
+    }
+
     //change player
     function changePlayer() {
         player1.active = (player1.active) ? false : true;
