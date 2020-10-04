@@ -16,6 +16,7 @@
     font-family: 'Sansita Swashed', cursive;
     font-size: 50px;
     color: rgb(20, 31, 53);
+    cursor: pointer;
 }
 
 .upper {
@@ -34,7 +35,11 @@
 .chooseplayers {
     position: absolute;
     display: none;
-    background-color: yellow;
+    height: 400px;
+    width: 300px;
+    top: 200px;
+    background-color: rgb(183, 184, 196);
+    border: 2px solid black;
 }
 
 .visible {
@@ -72,4 +77,22 @@ h1 {
     font-size: 40px;
     text-decoration: underline darkblue 3px;
     color: rgb(20, 31, 53);
+}
+
+button {
+    background-color: darkkhaki;
+    border: 3px solid darkblue;
+    font-family: 'Pacifico', cursive;
+    font-size: 20px;
+    color: rgb(22, 42, 82);
+    padding: 7px 30px
+}
+
+button:hover {
+    box-shadow: rgb(47, 47, 82) 5px 5px 15px 5px;
+    background-color: rgb(194, 192, 164);
+}
+
+button:active {
+    border-color: rgb(153, 32, 32);
 }
