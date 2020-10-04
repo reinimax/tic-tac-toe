@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <link href="style.css" rel="stylesheet">
-        <title>TIC - TAC - TOE</title>
-    </head>
-    <body>
+
+<head>
+    <meta charset="utf-8">
+    <link href="style.css" rel="stylesheet">
+    <title>TIC - TAC - TOE</title>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Tic - Tac - Toe</h1>
         <div class="chooseplayers">
             <p>Enter your name:</p>
             <label for="player1">Player 1</label>
@@ -17,18 +21,24 @@
             <button id="startgame">Start game</button>
         </div>
         <div id="gameboard">
-            <div id="0" class="gb-field"></div>
-            <div id="1" class="gb-field"></div>
-            <div id="2" class="gb-field"></div>
+            <div id="0" class="gb-field upper"></div>
+            <div id="1" class="gb-field upper  middle"></div>
+            <div id="2" class="gb-field upper"></div>
             <div id="3" class="gb-field"></div>
-            <div id="4" class="gb-field"></div>
+            <div id="4" class="gb-field middle"></div>
             <div id="5" class="gb-field"></div>
-            <div id="6" class="gb-field"></div>
-            <div id="7" class="gb-field"></div>
-            <div id="8" class="gb-field"></div>
+            <div id="6" class="gb-field lower"></div>
+            <div id="7" class="gb-field lower middle"></div>
+            <div id="8" class="gb-field lower"></div>
         </div>
-        <p id="announce-winner"></p>
-        <button id="newgame">New game</button>
-        <script src="script.js"></script>
-    </body>
+        <div id="announcement-container">
+            <p id="announce-winner"></p>
+        </div>
+        <div>
+            <button id="newgame">New game</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
 </html>
