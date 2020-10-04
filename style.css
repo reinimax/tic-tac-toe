@@ -50,8 +50,10 @@
     margin-top: 10vh;
 }
 
-#announcement-container {
+#announce-winner {
     height: 50px;
+    line-height: 50px;
+    font-size: 30px;
 }
 
 #newgame {
