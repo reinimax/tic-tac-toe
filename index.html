@@ -11,13 +11,19 @@
     <div id="container">
         <h1>Tic - Tac - Toe</h1>
         <div class="chooseplayers">
-            <p>Enter your name:</p>
-            <label for="player1">Player 1</label>
-            <input id="player1">
-            <label for="player2">Player 2</label>
-            <input id="player2">
-            <label for="ai">AI?</label>
-            <input type="checkbox" id="ai">
+            <div id="enter">Enter your name:</div>
+            <div>
+                <label for="player1">Player 1</label>
+                <input id="player1" class="playerfield">
+            </div>
+            <div>
+                <label for="player2">Player 2</label>
+                <input id="player2" class="playerfield">
+            </div>
+            <div>
+                <label for="ai">Play against AI?</label>
+                <input type="checkbox" id="ai">
+            </div>
             <button id="startgame">Start game</button>
         </div>
         <div id="gameboard">
