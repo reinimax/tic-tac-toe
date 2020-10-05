@@ -95,6 +95,7 @@ const Player = (name, sign) => {
 
 //game
 const game = ( () => {
+    let gameRunning = false;
     //create players
     const player1 = Player("Player 1", "X");
     const player2 = Player("Player 2", "O");
@@ -102,6 +103,7 @@ const game = ( () => {
     function init() {
         chacheDom();
         addListeners();
+        checkforAI(); //this ensures that player 2 field stays disabled when AI is checked even when page is reloaded
     }
 
     function chacheDom() {
@@ -116,9 +118,8 @@ const game = ( () => {
 
     function addListeners() {
         newGameBtn.addEventListener("click", function() {
-            checkforAI(); //this ensures that player 2 field stays disabled when AI is checked even when page is reloaded
             playerPanel.classList.add("visible");
-            if (announceWinner.textContent === "") endGame("C");
+            if (gameRunning) endGame("C");
         });
         startBtn.addEventListener("click", startGame);
         aiCheckBox.addEventListener("click", checkforAI);
@@ -134,6 +135,7 @@ const game = ( () => {
 
     //start game
     function startGame() {   
+        gameRunning = true;
         setPlayerNames()
         //clear field that announces winner from previous game
         announceWinner.textContent = "";
@@ -173,6 +175,7 @@ const game = ( () => {
         gameBoard.resetBoard();
         //remove listeners
         gameBoard.removeListeners();
+        gameRunning = false;
     }
 
     return {init, startGame, changePlayer, getActivePlayerSign, isAIActive, endGame};
