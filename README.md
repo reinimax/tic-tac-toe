@@ -1,6 +1,6 @@
 # Tic Tac Toe
 
-A [Tic-tac-toe)(https://en.wikipedia.org/wiki/Tic-tac-toe) game for the JavaScript curriculum at [The Odin Project](https://www.theodinproject.com). One can play against another human in hot seat mode or against an AI that chooses random legal fields. The goal here was to practice organizing one's code via factory functions and the module pattern (using IIFE's).
+A [Tic-tac-toe](https://en.wikipedia.org/wiki/Tic-tac-toe) game for the JavaScript curriculum at [The Odin Project](https://www.theodinproject.com). One can play against another human in hot seat mode or against an AI that chooses random legal fields. The goal here was to practice organizing one's code via factory functions and the module pattern (using IIFE's).
 
 ![Screenshot](screenshot.png)
 
